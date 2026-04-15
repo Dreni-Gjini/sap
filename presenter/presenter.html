@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Private AI for SAP — Presenter Notes</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 22mm 18mm; }
+  * { box-sizing: border-box; }
+  html, body {
+    font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #111;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+  body { margin: 0; }
+  .cover {
+    page-break-after: always;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10mm;
+  }
+  .cover h1 {
+    font-size: 34pt;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 10mm 0;
+  }
+  .cover .sub { color: #555; font-size: 14pt; max-width: 150mm; }
+  .cover .meta { margin-top: auto; color: #888; font-size: 10pt; }
+  .accent { color: #00837b; }
+  .section {
+    page-break-before: always;
+    padding-top: 2mm;
+  }
+  .eyebrow {
+    color: #00837b;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 4mm;
+  }
+  h2 {
+    font-size: 22pt;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 6mm 0;
+  }
+  h3 {
+    font-size: 13pt;
+    margin: 7mm 0 2mm 0;
+    color: #111;
+  }
+  h4 { font-size: 11pt; margin: 4mm 0 1mm 0; color: #222; }
+  p { margin: 0 0 3mm 0; }
+  ul, ol { margin: 0 0 4mm 0; padding-left: 6mm; }
+  li { margin-bottom: 1.2mm; }
+  .pullquote {
+    border-left: 3px solid #00837b;
+    padding: 2mm 0 2mm 5mm;
+    margin: 4mm 0;
+    font-size: 12pt;
+    font-weight: 600;
+    color: #111;
+  }
+  .callout {
+    background: #f4fbfa;
+    border: 1px solid #cbe9e6;
+    padding: 4mm 5mm;
+    border-radius: 3mm;
+    margin: 4mm 0;
+  }
+  .warn {
+    background: #fff5f5;
+    border: 1px solid #f2caca;
+    padding: 4mm 5mm;
+    border-radius: 3mm;
+    margin: 4mm 0;
+  }
+  .kv { display: grid; grid-template-columns: 45mm 1fr; gap: 2mm 5mm; margin: 3mm 0; }
+  .kv dt { font-weight: 700; color: #444; }
+  .kv dd { margin: 0; }
+  .qa { margin: 3mm 0; }
+  .qa b { color: #00837b; }
+  table { border-collapse: collapse; width: 100%; font-size: 10pt; margin: 3mm 0; }
+  th, td { border: 1px solid #ddd; padding: 2mm 3mm; text-align: left; vertical-align: top; }
+  th { background: #f7f7f7; }
+  .footer-note { color: #888; font-size: 9pt; margin-top: 6mm; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 10pt; background: #f4f4f4; padding: 0 1mm; border-radius: 1mm; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="eyebrow">Presenter Notes</div>
+  <h1>Private AI for SAP.<br/><span class="accent">Your data never leaves the building.</span></h1>
+  <div class="sub">Speaker's companion document. Detailed talking points, anticipated questions, and technical appendix for each section of the presentation.</div>
+  <div class="meta">Confidential — internal use</div>
+</div>
+
+<!-- 1. HERO -->
+<div class="section">
+  <div class="eyebrow">Section 1 · Hero</div>
+  <h2>Private AI for SAP. Your data never leaves the building.</h2>
+
+  <h3>The 30-second pitch</h3>
+  <p>We help companies that run SAP adopt AI without sending their ERP data to public cloud AI providers. The AI model runs on a dedicated on-premise appliance inside the customer's office. A middleware layer syncs only what the AI needs into an isolated vector database. SAP itself is never touched by the AI.</p>
+
+  <h3>Why this line matters</h3>
+  <ul>
+    <li><b>"Private"</b> sets the frame: not a cheaper Joule, a fundamentally different trust model.</li>
+    <li><b>"Never leaves the building"</b> is the emotional anchor. Compliance teams, CISOs, and works councils all respond to this phrase.</li>
+  </ul>
+
+  <h3>Opening talking points</h3>
+  <ul>
+    <li>Ask the room: "Where is your SAP data right now? Would you be comfortable if that same data sat in a third-party AI vendor's logs for 30 days?"</li>
+    <li>Name the elephant: SAP Joule exists. We're not here to replace it for everyone — we're here for the customers who can't or won't use it.</li>
+  </ul>
+
+  <div class="callout"><b>Tone:</b> confident, not defensive. This is a sovereignty story, not a fear story.</div>
+</div>
+
+<!-- 2. PROBLEM -->
+<div class="section">
+  <div class="eyebrow">Section 2 · The Problem</div>
+  <h2>Why the default options don't work for a large class of SAP customers.</h2>
+
+  <h3>Three real problems</h3>
+  <ol>
+    <li><b>Cloud AI means data leaves the perimeter.</b> Most public AI providers retain prompts for 30 days for abuse detection. Even with enterprise agreements, prompts transit and are processed outside the customer boundary.</li>
+    <li><b>Vendor AI (Joule) is a long-term subscription with no exit.</b> Per-user, per-month pricing scales with headcount forever. Customer cannot change models, cannot self-host, cannot bring the solution on-prem.</li>
+    <li><b>Connecting AI directly to the production DB is dangerous.</b> Hallucinations on the source of truth, inconsistent query patterns, and performance contention with real ERP workloads.</li>
+  </ol>
+
+  <h3>Who this hits hardest</h3>
+  <ul>
+    <li>Defense and aerospace contractors</li>
+    <li>Pharma and life sciences (clinical + trade secret data)</li>
+    <li>Banking and insurance (regulator-driven residency)</li>
+    <li>EU public sector and sovereign enterprises</li>
+    <li>Any customer still on ECC / S/4 on-prem (Joule coverage is limited)</li>
+  </ul>
+
+  <h3>Anticipated pushback</h3>
+  <div class="qa"><b>Q:</b> "Our cloud provider is compliant. Why is this a problem?"</div>
+  <div class="qa"><b>A:</b> Compliance is necessary, not sufficient. SOC 2 doesn't change data residency. A SOC 2 provider that processes your data in the US still creates a GDPR transfer question and, more importantly, a perception problem with your own customers and works councils.</div>
+</div>
+
+<!-- 3. ARCHITECTURE -->
+<div class="section">
+  <div class="eyebrow">Section 3 · Architecture</div>
+  <h2>One-way flow. SAP stays sealed.</h2>
+
+  <h3>The flow, spoken plainly</h3>
+  <p>SAP is on the left. Everything to the right of SAP is new. Data flows one direction only — out of SAP, never back in — until the very end where users ask questions through the UI. The AI never issues a query against SAP.</p>
+
+  <h3>Layer by layer</h3>
+  <dl class="kv">
+    <dt>SAP (ECC / S/4HANA)</dt><dd>The existing system of record. Untouched. No AI reads or writes directly.</dd>
+    <dt>CDC Layer</dt><dd>Change Data Capture. Options: SAP SLT (Landscape Transformation), ODP (Operational Data Provisioning), or SAP Event Mesh for streaming. Emits only deltas, not full dumps.</dd>
+    <dt>ETL + Embeddings Worker</dt><dd>Python service. Filters, redacts PII where not needed, chunks records, generates vector embeddings.</dd>
+    <dt>Vector DB</dt><dd>Qdrant, Weaviate, or pgvector. Stores embeddings with RBAC metadata on every chunk (org unit, company code, cost center).</dd>
+    <dt>LLM Runtime</dt><dd>Ollama or vLLM running on the on-prem appliance. Loads an open-weight model.</dd>
+    <dt>Middleware API</dt><dd>FastAPI. Handles auth, RBAC enforcement, skill dispatch, audit logging.</dd>
+    <dt>Internal Web UI</dt><dd>Office network only. No external exposure.</dd>
+  </dl>
+
+  <h3>Point to make on the slide</h3>
+  <p>Call out the dashed red box around SAP: <b>"This is the isolation boundary. The AI has no credentials, no network path, and no mechanism to reach into SAP directly. Everything it knows about the business is mediated by the vector DB and the skills registry."</b></p>
+
+  <h3>Anticipated questions</h3>
+  <div class="qa"><b>Q:</b> "Isn't reading from HANA directly faster?"</div>
+  <div class="qa"><b>A:</b> Yes, but it's also unsupported by SAP and couples the AI to schema changes. CDC via supported APIs is the production-correct path.</div>
+  <div class="qa"><b>Q:</b> "How fresh is the vector DB?"</div>
+  <div class="qa"><b>A:</b> Depends on the CDC transport. SLT batch: minutes. Event Mesh streaming: seconds. Tuneable per use case.</div>
+</div>
+
+<!-- 4. SKILLS -->
+<div class="section">
+  <div class="eyebrow">Section 4 · Skills Layer</div>
+  <h2>The AI doesn't query SAP. It calls typed skills.</h2>
+
+  <h3>What a skill is</h3>
+  <p>A skill is a whitelisted Python function registered with the middleware. Each skill has an input schema, a required permission check, a single well-defined SAP call, and a typed return. The LLM can <i>request</i> a skill by name with arguments. The middleware decides whether to run it.</p>
+
+  <h3>Example skills</h3>
+  <ul>
+    <li><code>get_open_invoices(customer_id)</code></li>
+    <li><code>check_stock(material_id, plant)</code></li>
+    <li><code>get_purchase_history(vendor_id, date_range)</code></li>
+    <li><code>create_purchase_req_draft(...)</code> — draft only; human approves in SAP</li>
+    <li><code>explain_cost_variance(cost_center, period)</code></li>
+    <li><code>find_similar_materials(query_text)</code> — retrieval-backed</li>
+  </ul>
+
+  <h3>Why this pattern matters</h3>
+  <ul>
+    <li><b>Typed I/O</b> — the LLM cannot construct arbitrary SQL. It can only pass arguments that match a schema.</li>
+    <li><b>RBAC enforcement</b> — every skill call runs under the user's SAP identity, with their authorization objects checked before execution.</li>
+    <li><b>Audit</b> — every skill invocation is logged with user, arguments, result size, and timestamp.</li>
+    <li><b>No write paths without approval</b> — write skills create drafts only. A human always confirms in SAP.</li>
+  </ul>
+
+  <div class="pullquote">The AI's power is bounded by the skills you give it. Nothing more.</div>
+</div>
+
+<!-- 5. SECURITY -->
+<div class="section">
+  <div class="eyebrow">Section 5 · Security</div>
+  <h2>Security model — six non-negotiables.</h2>
+
+  <h3>1. OIDC / SAML authentication</h3>
+  <p>No new identity system. Users sign in with their existing corporate SSO, which maps to their SAP identity.</p>
+
+  <h3>2. RBAC mirrors SAP authorization objects</h3>
+  <p>Every embedded chunk in the vector DB carries RBAC metadata (org unit, company code, cost center, plant). On every retrieval, the middleware filters by the querying user's SAP authorizations <i>before</i> the LLM sees any content. Without this, RAG leaks data across roles. This is the single most important control on the stack.</p>
+
+  <h3>3. Prompt-injection defense</h3>
+  <ul>
+    <li>Separate system, user, and tool channels</li>
+    <li>Strip instruction-like content from retrieved documents before they reach the model</li>
+    <li>Output filtering for data exfiltration patterns</li>
+  </ul>
+
+  <h3>4. Immutable audit log</h3>
+  <p>Every prompt, retrieval, skill call, and response is logged. Write-once storage. Queryable by compliance teams.</p>
+
+  <h3>5. PII redaction at ingest</h3>
+  <p>Names, national IDs, bank details, and other direct identifiers are redacted before embedding unless the use case specifically requires them.</p>
+
+  <h3>6. mTLS + air-gapped network</h3>
+  <p>Mutual TLS between middleware and the LLM runtime. The LLM host has no outbound internet. Ingress only from the middleware.</p>
+
+  <div class="callout"><b>Talking point:</b> "Everything the customer's security team already does for SAP — SSO, RBAC, audit — extends to the AI layer without invention. We don't replace their model; we inherit it."</div>
+</div>
+
+<!-- 6. COMPLIANCE -->
+<div class="section">
+  <div class="eyebrow">Section 6 · Compliance</div>
+  <h2>Compliance-ready by design.</h2>
+
+  <h3>Standards this architecture maps to</h3>
+  <table>
+    <tr><th>Standard</th><th>What our architecture provides</th></tr>
+    <tr><td>SOC 2 Type II</td><td>Immutable audit logging, least-privilege access, change management for skills and model versions.</td></tr>
+    <tr><td>HIPAA</td><td>PHI stays on-premise. No ePHI leaves the customer perimeter. Supports BAA-required controls: access, audit, encryption in transit and at rest.</td></tr>
+    <tr><td>GDPR</td><td>Data minimization (only deltas via CDC), purpose limitation (typed skills), right-to-erasure propagated from SAP to vector DB.</td></tr>
+    <tr><td>ISO 27001</td><td>Controls mappable to ISMS requirements: Annex A.8 (asset management), A.9 (access control), A.12 (operations security), A.18 (compliance).</td></tr>
+    <tr><td>CCPA / CPRA</td><td>Consumer data never sold or shared with AI vendors. Deletion requests propagate across both SAP and vector DB.</td></tr>
+    <tr><td>FedRAMP-aligned</td><td>Architecture patterns compatible with FedRAMP Moderate boundaries for sovereign deployments.</td></tr>
+  </table>
+
+  <h3>Important caveat to state out loud</h3>
+  <p>Compliance certifications attach to organizations and deployments, not to architectures in the abstract. This architecture is <i>designed to satisfy</i> the controls these standards require. The customer's deployment still needs to undergo its own audit.</p>
+
+  <div class="pullquote">The customer's existing SAP audit posture extends to the AI layer — not the other way around.</div>
+</div>
+
+<!-- 7. HARDWARE -->
+<div class="section">
+  <div class="eyebrow">Section 7 · Hardware</div>
+  <h2>Fits on a desk. Runs the whole office.</h2>
+
+  <h3>Why the appliance matters</h3>
+  <p>A sovereign AI story without credible hardware is vaporware. The customer needs to see something that looks like a product they can buy, rack, and maintain.</p>
+
+  <h3>The appliance profile</h3>
+  <ul>
+    <li>Apple Silicon M-Ultra class, 192 GB unified memory</li>
+    <li>Runs large-class open-weight models locally with usable latency</li>
+    <li>Desktop form factor — no datacenter required</li>
+    <li>Stackable across branch offices via a simple inference load balancer</li>
+  </ul>
+
+  <h3>How to frame it to a skeptical engineer</h3>
+  <ul>
+    <li>Apple Silicon's unified memory is the unlock — large models fit in RAM without paging.</li>
+    <li>Throughput is sufficient for interactive use at office scale (tens of concurrent users per unit).</li>
+    <li>Scale-out story: add units per branch or per department, load-balance at the middleware.</li>
+  </ul>
+
+  <div class="callout"><b>If asked about GPUs:</b> "Workstation-class NVIDIA hardware is a valid alternative for customers with existing GPU skill sets. The architecture is model-and-runtime-agnostic. The appliance is a recommendation, not a requirement."</div>
+</div>
+
+<!-- 8. VS JOULE -->
+<div class="section">
+  <div class="eyebrow">Section 8 · vs SAP Joule</div>
+  <h2>Where we win, where we don't.</h2>
+
+  <h3>Six-point comparison</h3>
+  <table>
+    <tr><th>Dimension</th><th>SAP Joule</th><th>Private AI for SAP</th></tr>
+    <tr><td>Data residency</td><td>Customer data routed through SAP BTP / hyperscalers</td><td>Data stays on the customer's premises</td></tr>
+    <tr><td>Model choice</td><td>What SAP ships</td><td>Customer-selected open-weight models; fine-tunable</td></tr>
+    <tr><td>Cost model</td><td>Per-user SaaS subscription, scales with headcount</td><td>Capex appliance + flat maintenance; breakeven ~50–100 users</td></tr>
+    <tr><td>SAP version support</td><td>Primarily S/4HANA Cloud</td><td>Any SAP version reachable via CDC/APIs — including ECC and on-prem S/4</td></tr>
+    <tr><td>Roadmap control</td><td>Vendor-driven</td><td>Customer controls skills, model updates, feature additions</td></tr>
+    <tr><td>Training-data leakage risk</td><td>Contractually governed, varies by product</td><td>Structurally zero — no data leaves the perimeter in the default path</td></tr>
+  </table>
+
+  <h3>Be honest about where Joule wins</h3>
+  <ul>
+    <li>Time-to-first-value: Joule can be turned on in days. Ours needs an implementation.</li>
+    <li>Deep SAP UI integration: Joule is embedded in Fiori natively.</li>
+    <li>Coverage: Joule ships many pre-built skills out of the box.</li>
+  </ul>
+  <p>Do not pretend otherwise. Credibility comes from acknowledging the trade-off.</p>
+</div>
+
+<!-- 9. FALLBACK -->
+<div class="section">
+  <div class="eyebrow">Section 9 · Fallback Strategy</div>
+  <h2>When local can't handle it — a ranked fallback.</h2>
+
+  <h3>Tier 1 — Preferred: tiered local models</h3>
+  <p>A small fast model handles the majority of queries (simple retrieval, straightforward summarization). A larger on-prem model handles the hard ones (complex reasoning, long context). Both run on the same appliance. Nothing leaves the building. This is the default path for 95% of use cases.</p>
+
+  <h3>Tier 2 — Acceptable: sovereign cloud burst with pseudonymization</h3>
+  <p>When local capacity is exceeded or a very large model is required, the middleware may burst to a sovereign cloud endpoint — typically Azure OpenAI in the customer's own region or AWS Bedrock with customer-managed KMS — under a <b>zero-retention addendum</b>.</p>
+
+  <h4>Before any payload leaves the premises, the middleware transforms the data:</h4>
+  <ol>
+    <li>Strips direct identifiers (names, national IDs, account numbers).</li>
+    <li>Generalizes quasi-identifiers (exact birthdate → age band; exact salary → salary band).</li>
+    <li>Replaces identifiers with deterministic tokens so results can be mapped back locally.</li>
+    <li>Drops free-text fields unless required.</li>
+  </ol>
+
+  <h4>Worked example</h4>
+  <p>Original record: <code>John Doe · DOB 1984-03-12 · salary €72,000 · Munich office</code></p>
+  <p>What the cloud sees: <code>Subject_A17F · age band 40–45 · salary band €70–75k · region DE-South</code></p>
+  <p>Cloud returns: <code>{ tax_owed: €18,400 }</code></p>
+  <p>Middleware re-attaches locally: <code>John Doe: €18,400</code></p>
+
+  <div class="warn"><b>Caveat to state explicitly:</b> Pseudonymized data remains personal data under GDPR Article 4(5). Tier 2 requires a DPA with the cloud provider, user opt-in per query, and full audit logging. It is not a way to escape GDPR — it is a way to reduce exposure while staying within compliance.</div>
+
+  <h3>Tier 3 — Never: raw data to public AI APIs</h3>
+  <p>Direct customer data never goes to public consumer AI endpoints. No exceptions. This is what the rest of the architecture exists to prevent.</p>
+
+  <h3>How to present the ranking</h3>
+  <ul>
+    <li>Tier 1 is the boring answer and it's the right one 95% of the time.</li>
+    <li>Tier 2 exists so the customer is never blocked when local can't deliver.</li>
+    <li>Tier 3 exists on the slide precisely to say "no."</li>
+  </ul>
+</div>
+
+<!-- 10. DATA FLOW -->
+<div class="section">
+  <div class="eyebrow">Section 10 · Data Flow in Action</div>
+  <h2>One change event, start to finish.</h2>
+
+  <h3>Walk the room through it</h3>
+  <ol>
+    <li>A finance clerk posts an invoice in SAP.</li>
+    <li>The CDC layer captures the change and emits an event within seconds.</li>
+    <li>The ETL worker consumes the event, redacts anything not needed downstream, chunks the record, and generates a vector embedding.</li>
+    <li>The chunk lands in the vector DB with RBAC metadata (company code, vendor group).</li>
+    <li>Later, an AP manager asks the assistant: "What's outstanding with Vendor X this month?"</li>
+    <li>The middleware authenticates the user, applies their SAP authorizations as a vector-DB filter, and retrieves the relevant chunks.</li>
+    <li>The LLM composes a response and — if needed — requests a skill call like <code>get_open_invoices(vendor_id)</code>.</li>
+    <li>The middleware runs the skill under the user's identity, returns the result, the LLM produces a grounded answer, and everything is audit-logged.</li>
+  </ol>
+
+  <h3>Pace</h3>
+  <p>Let the animation play once. Pause. Then verbalize the trust boundary: "Notice that the arrow into SAP, from the AI side, does not exist. It never did."</p>
+</div>
+
+<!-- 11. WHY NOW -->
+<div class="section">
+  <div class="eyebrow">Section 11 · Why Now</div>
+  <h2>Three things that make this the right moment.</h2>
+
+  <h3>1. Regulated industries are actively looking for sovereign AI</h3>
+  <p>Defense, pharma, banking, and EU public sector are under increasing pressure to adopt AI without compromising data residency. The demand exists today. The supply — productized on-prem AI for ERP — does not.</p>
+
+  <h3>2. Open-weight models have crossed the enterprise threshold</h3>
+  <p>Proven open-weight models, US and EU origin, are now capable enough for serious enterprise work. What was a research toy two years ago is a production option today.</p>
+
+  <h3>3. CDC tooling for SAP is mature</h3>
+  <p>SLT, ODP, and Event Mesh are production-proven. The plumbing for one-way sync exists and has existed for years. We're composing known parts, not inventing new ones.</p>
+
+  <div class="pullquote">The problem has been real for a decade. The solution parts only clicked into place in the last eighteen months.</div>
+</div>
+
+<!-- 12. CLOSING -->
+<div class="section">
+  <div class="eyebrow">Section 12 · Closing</div>
+  <h2>SAP stays sealed. AI stays local. You stay in control.</h2>
+
+  <h3>The one-sentence takeaway</h3>
+  <p>If the room forgets everything else, it should remember this: your SAP data is not training someone else's model, not sitting in someone else's log, and not flowing through someone else's network — and your users still get a useful AI.</p>
+
+  <h3>Suggested closing move</h3>
+  <ul>
+    <li>Do not end on a sales ask.</li>
+    <li>End on a question: "What would you want to try first — a read-only pilot on one module, or an end-to-end pilot on a single office?"</li>
+    <li>Hand out this document. Offer a follow-up technical deep-dive.</li>
+  </ul>
+
+  <div class="footer-note">A detailed technical appendix — protocol-level data flow, sample audit events, reference skill specs, and capacity-planning tables — is available as a separate document on request.</div>
+</div>
+
+</body>
+</html>
